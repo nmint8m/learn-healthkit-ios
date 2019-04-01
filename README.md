@@ -179,3 +179,24 @@ private func scheduleNotificationForDate(_ hour: Int, _ minute: Int, _ second: I
     }
 ```
 
+## Conclusion
+
+| App state | Is able to read HealthKit data | Is able to send data | Solution (if exist) |
+|---|---|---|---|
+| Not running | No | No | No solution |
+| Inactive | Yes | Yes | Should not (*) |
+| Active | Yes | Yes | |
+| Background | Yes | Yes  | Background fetch, Long-Running Queries (**) |
+| Suspended | No | No | Change app state to background (***) |
+
+(*) But this app usually stat in the inactive state only briefly as it transition to a different state -> We should not read/send data while in this state.
+
+(**) Just only users don't lock device with password. The question is how often client wants to update data?
+
+(***) Mentioned above:
+
+- Push silent notification to change app state to background
+- Run query in `applicationProtectedDataWillBecomeAvailable`/ `applicationProtectedDataDidBecomeAvailable` to check data is encrypted or not.
+- Do like (**)
+
+
