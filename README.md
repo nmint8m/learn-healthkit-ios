@@ -251,7 +251,7 @@ Table 4-1 lists the notifications that can be coalesced and delivered to your ap
 
 | App state | Is able to read HealthKit data | Is able to send data | Solution (if exist) |
 |---|---|---|---|
-| Not running | No | No | No solution |
+| Not running | No | No | Local notification |
 | Inactive | Yes | Yes | Should not (*) |
 | Active | Yes | Yes | |
 | Background | Yes | Yes  | Background fetch, Long-Running Queries (**) |
