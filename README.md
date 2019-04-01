@@ -231,6 +231,22 @@ Healthkit provides the following long-running queries:
 - Statistics collection query.
 - Activity summary query.
 
+## Strategies for Handling App State Transitions
+
+Reference: [Strategies for Handling App State Transitions](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/StrategiesforHandlingAppStateTransitions/StrategiesforHandlingAppStateTransitions.html)
+
+### Be Prepared to Process Queued Notifications
+
+An app in the suspended state must be ready to handle any queued notifications when it returns to a foreground or background execution state. A suspended app does not execute any code and therefore cannot process notifications related to orientation changes, time changes, preferences changes, and many others that would affect the app’s appearance or state.
+
+To make sure these changes are not lost, the system queues many relevant notifications and delivers them to the app as soon as it starts executing code again (either in the foreground or background). To prevent your app from becoming overloaded with notifications when it resumes, **the system coalesces events and delivers a single notification** (of each relevant type) **that reflects the net change since your app was suspended**.
+
+Table 4-1 lists the notifications that can be coalesced and delivered to your app. Most of these notifications are delivered directly to the registered observers. Some, like those related to device orientation changes, are typically intercepted by a system framework and delivered to your app in another way.
+
+| Event | Notifications |
+|---|---|
+| The status of protected files changes. (like HealthKit data) |UIApplicationProtectedDataWillBecomeUnavailable, UIApplicationProtectedDataDidBecomeAvailable |
+
 ## Conclusion
 
 | App state | Is able to read HealthKit data | Is able to send data | Solution (if exist) |
