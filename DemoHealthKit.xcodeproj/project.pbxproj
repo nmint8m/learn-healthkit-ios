@@ -14,6 +14,10 @@
 		226461A32251AC1B009C8003 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226461A22251AC1B009C8003 /* HealthKit.framework */; };
 		226461A82251D627009C8003 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226461A62251D627009C8003 /* NotificationVC.swift */; };
 		226461A92251D627009C8003 /* NotificationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226461A72251D627009C8003 /* NotificationVC.xib */; };
+		22EB910622544DE200215BCE /* StepCountingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB910422544DE200215BCE /* StepCountingVC.swift */; };
+		22EB910722544DE200215BCE /* StepCountingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22EB910522544DE200215BCE /* StepCountingVC.xib */; };
+		22EB910C2254665600215BCE /* StepInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB910A2254665600215BCE /* StepInfoCell.swift */; };
+		22EB910D2254665600215BCE /* StepInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22EB910B2254665600215BCE /* StepInfoCell.xib */; };
 		8BD7F4748099C66117BE651B /* Pods_DemoHealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31982771404BB5207EBC6210 /* Pods_DemoHealthKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +33,10 @@
 		226461A22251AC1B009C8003 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		226461A62251D627009C8003 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		226461A72251D627009C8003 /* NotificationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationVC.xib; sourceTree = "<group>"; };
+		22EB910422544DE200215BCE /* StepCountingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountingVC.swift; sourceTree = "<group>"; };
+		22EB910522544DE200215BCE /* StepCountingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepCountingVC.xib; sourceTree = "<group>"; };
+		22EB910A2254665600215BCE /* StepInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepInfoCell.swift; sourceTree = "<group>"; };
+		22EB910B2254665600215BCE /* StepInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepInfoCell.xib; sourceTree = "<group>"; };
 		31982771404BB5207EBC6210 /* Pods_DemoHealthKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoHealthKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A2CF02591FA2489A7D23B4 /* Pods-DemoHealthKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoHealthKit.release.xcconfig"; path = "Target Support Files/Pods-DemoHealthKit/Pods-DemoHealthKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,16 +75,44 @@
 		2264618C2251AB1F009C8003 /* DemoHealthKit */ = {
 			isa = PBXGroup;
 			children = (
+				22EB910322544DC000215BCE /* CoreMotion */,
+				22EB910222544DB300215BCE /* HealthKit */,
+				22EB910122544DA700215BCE /* Notification */,
 				226461A12251AC1B009C8003 /* DemoHealthKit.entitlements */,
 				2264618D2251AB1F009C8003 /* AppDelegate.swift */,
 				226461942251AB22009C8003 /* Assets.xcassets */,
 				226461962251AB22009C8003 /* LaunchScreen.storyboard */,
 				226461992251AB22009C8003 /* Info.plist */,
-				2264619F2251ABE5009C8003 /* HealthKitManager.swift */,
+			);
+			path = DemoHealthKit;
+			sourceTree = "<group>";
+		};
+		22EB910122544DA700215BCE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
 				226461A62251D627009C8003 /* NotificationVC.swift */,
 				226461A72251D627009C8003 /* NotificationVC.xib */,
 			);
-			path = DemoHealthKit;
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		22EB910222544DB300215BCE /* HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+				2264619F2251ABE5009C8003 /* HealthKitManager.swift */,
+			);
+			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		22EB910322544DC000215BCE /* CoreMotion */ = {
+			isa = PBXGroup;
+			children = (
+				22EB910422544DE200215BCE /* StepCountingVC.swift */,
+				22EB910522544DE200215BCE /* StepCountingVC.xib */,
+				22EB910A2254665600215BCE /* StepInfoCell.swift */,
+				22EB910B2254665600215BCE /* StepInfoCell.xib */,
+			);
+			path = CoreMotion;
 			sourceTree = "<group>";
 		};
 		63EA48F03BBE012121413C8D /* Frameworks */ = {
@@ -168,6 +204,8 @@
 				226461982251AB22009C8003 /* LaunchScreen.storyboard in Resources */,
 				226461952251AB22009C8003 /* Assets.xcassets in Resources */,
 				226461A92251D627009C8003 /* NotificationVC.xib in Resources */,
+				22EB910D2254665600215BCE /* StepInfoCell.xib in Resources */,
+				22EB910722544DE200215BCE /* StepCountingVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +265,9 @@
 			files = (
 				2264618E2251AB1F009C8003 /* AppDelegate.swift in Sources */,
 				226461A82251D627009C8003 /* NotificationVC.swift in Sources */,
+				22EB910C2254665600215BCE /* StepInfoCell.swift in Sources */,
 				226461A02251ABE5009C8003 /* HealthKitManager.swift in Sources */,
+				22EB910622544DE200215BCE /* StepCountingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +410,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D4Q882ZZC3;
 				INFOPLIST_FILE = DemoHealthKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,6 +431,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D4Q882ZZC3;
 				INFOPLIST_FILE = DemoHealthKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

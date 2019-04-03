@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
-        window?.rootViewController = NotificationVC()
+        window?.rootViewController = StepCountingVC()
 
         return true
     }
@@ -63,16 +63,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func logApplicationState(function: String, message: String) {
-        print("FUNCTION: \(function)")
+        print("\(Date()) FUNCTION: \(function)")
         switch UIApplication.shared.applicationState {
         case .active:
-            print("APP STATE: ACTIVE")
+            print("\(Date()) APP STATE: ACTIVE")
         case .inactive:
-            print("APP STATE: INACTIVE")
+            print("\(Date()) APP STATE: INACTIVE")
         case .background:
-            print("APP STATE: BACKGROUND")
+            print("\(Date()) APP STATE: BACKGROUND")
         }
-        print("MESSAGE: \(message)")
+        print("\(Date()) MESSAGE: \(message)")
         print("------------------------")
     }
 
@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func createFiniteBackGroundWork(application: UIApplication, task: @escaping () -> Void) {
         finiteBackgroundTaskID = application.beginBackgroundTask(withName: "FiniteBackgroundTask") { [weak self] in
-            print("MY FINITE TASK IS ENDED: \(Date())")
+            print("\(Date()) MY FINITE TASK IS ENDED ")
             print("------------------------")
             guard let this = self else { return }
             application.endBackgroundTask(this.finiteBackgroundTaskID)
@@ -89,12 +89,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         DispatchQueue.main.async { [weak self] in
-            print("FINITE BACKGROUND TASK STARTED: \(Date())")
+            print("\(Date()) FINITE BACKGROUND TASK STARTED")
             task()
             guard let this = self else { return }
             application.endBackgroundTask(this.finiteBackgroundTaskID)
             this.finiteBackgroundTaskID = UIBackgroundTaskIdentifier.invalid
-            print("BACKGROUND TASK ENDED: \(Date())")
+            print("\(Date()) BACKGROUND TASK ENDED")
             print("------------------------")
         }
     }

@@ -2,8 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Heath update</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>Health record</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Health usage</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This is a step counter, and we’d like to track motion.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -22,10 +28,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSHealthShareUsageDescription</key>
-	<string>Usage</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Update</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

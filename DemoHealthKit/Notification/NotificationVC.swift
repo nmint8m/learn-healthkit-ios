@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class NotificationVC: UIViewController {
+final class NotificationVC: UIViewController {
 
     @IBOutlet weak var hourTextField: UITextField!
     @IBOutlet weak var minuteTextField: UITextField!
@@ -20,10 +20,7 @@ class NotificationVC: UIViewController {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
 
         }
-        HealthKitManager.manager.authen { (granted, error) in
-            
-        }
-        // Do any additional setup after loading the view.
+        HealthKitManager.manager.authen { (granted, error) in }
     }
 
     @IBAction func pushButtonTouchUpInside(_ sender: Any) {
@@ -38,8 +35,8 @@ class NotificationVC: UIViewController {
 
     private func scheduleNotificationForDate(_ hour: Int, _ minute: Int, _ second: Int) {
         let noti = UNMutableNotificationContent()
-        noti.title = "Notification title"
-        noti.body = "Notification body"
+        noti.title = "\(Date()) Notification title"
+        noti.body = "\(Date()) Notification body"
         noti.categoryIdentifier = "ID_NOTI"
         noti.sound = UNNotificationSound.default
 
@@ -64,7 +61,7 @@ extension NotificationVC: UNUserNotificationCenterDelegate {
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.notification.request.content.categoryIdentifier == "NOTII" {
+        if response.notification.request.content.categoryIdentifier == "ID_NOTI" {
             // Handle the actions for the expired timer.
             if response.actionIdentifier == "SNOOZE_ACTION" {
                 // Invalidate the old timer and create a new one. . .
