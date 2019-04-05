@@ -68,14 +68,13 @@ extension StepCountingVC: MotionManagerDelegate {
     func motionManager(_ motionManager: MotionManager, needsPerform action: MotionManager.Action) {
         switch action {
         case .updateMotion(let newInfo):
-            print("MotionInfo:")
-            print(newInfo.date)
-            print(newInfo.stepInfo )
+            let state: String
             switch newInfo.appState {
-            case .active: print("Active")
-            case .inactive: print("Inactive")
-            case .background: print("Background")
+            case .active: state = "Active"
+            case .inactive: state = "Inactive"
+            case .background: state = "Background"
             }
+            print("### StepCountingVC: MotionInfo: Date \(newInfo.date), AppState: \(state) Step \(newInfo.stepInfo)")
 
             motionInfo.append(newInfo)
 
@@ -98,6 +97,11 @@ final class MotionManager {
 
     static let shared = MotionManager()
     weak var delegate: MotionManagerDelegate?
+    var currentMotionInfo = MotionInfo(date: Date(), appState: .active, stepInfo: "0") {
+        didSet {
+            
+        }
+    }
 
     private var pedometer = CMPedometer()
 
@@ -121,11 +125,13 @@ final class MotionManager {
                         let motion = MotionInfo(date: date,
                                                 appState: UIApplication.shared.applicationState,
                                                 stepInfo: "\(data.numberOfSteps)")
+                        this.currentMotionInfo = motion
                         this.delegate?.motionManager(this, needsPerform: .updateMotion(motion))
                     } else {
                         let motion = MotionInfo(date: date,
                                                 appState: UIApplication.shared.applicationState,
                                                 stepInfo: "No step info now")
+                        this.currentMotionInfo = motion
                         this.delegate?.motionManager(this, needsPerform: .updateMotion(motion))
                     }
 
@@ -133,6 +139,7 @@ final class MotionManager {
                         let motion = MotionInfo(date: date,
                                                 appState: UIApplication.shared.applicationState,
                                                 stepInfo: "\(error)")
+                        this.currentMotionInfo = motion
                         this.delegate?.motionManager(this, needsPerform: .updateMotion(motion))
                     }
                 }
