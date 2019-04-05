@@ -132,6 +132,55 @@ When a good opportunity arises, the system wakes or launches your app into the b
 When downloading any content, it is recommended that you use the NSURLSession class to initiate and manage your downloads. For information about how to use this class to manage upload and download tasks, see URL Loading System Programming Guide.
 
 > My Note: 
+ 
+```
+/*! The system guarantees that it will not wake up your application for a background fetch more
+        frequently than the interval provided. Set to UIApplicationBackgroundFetchIntervalMinimum to be
+        woken as frequently as the system desires, or to UIApplicationBackgroundFetchIntervalNever (the
+        default) to never be woken for a background fetch.
+     
+        This setter will have no effect unless your application has the "fetch" 
+        UIBackgroundMode. See the UIApplicationDelegate method
+        `application:performFetchWithCompletionHandler:` for more. */
+    @available(iOS 7.0, *)
+    open func setMinimumBackgroundFetchInterval(_ minimumBackgroundFetchInterval: TimeInterval)
+```
+
+```
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        ...
+    }
+
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("### PerformFetchWithCompletionHandler ###")
+
+        let motionInfo = MotionManager.shared.currentMotionInfo
+
+        let state: String
+        switch motionInfo.appState {
+        case .active: state = "Active"
+        case .inactive: state = "Inactive"
+        case .background: state = "Background"
+        }
+        print("### StepCountingVC: MotionInfo: Date \(motionInfo.date), AppState: \(state) Step \(motionInfo.stepInfo)")
+
+        guard let url = URL(string: "Some URL") else {
+            completionHandler(UIBackgroundFetchResult.noData)
+            return
+        }
+        var request = URLRequest(url: url)
+        request.setValue("Some value", forHTTPHeaderField: "Some Key")
+        
+        let section = URLSession(configuration: URLSessionConfiguration.ephemeral)
+
+        let task = section.dataTask(with: request) {(data, response, error) in
+            completionHandler(UIBackgroundFetchResult.newData)
+        }
+        task.resume()
+        completionHandler(UIBackgroundFetchResult.noData)
+    }
+```
 
 ### Pushing Updates to Your App Silently
 
